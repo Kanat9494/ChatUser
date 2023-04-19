@@ -32,7 +32,7 @@ class Program
             };
 
             var jsonMessage = JsonConvert.SerializeObject(message);
-            byte[] data = Encoding.Unicode.GetBytes(jsonMessage);
+            byte[] data = Encoding.UTF8.GetBytes(jsonMessage);
             stream.Write(data, 0, data.Length);
 
             Thread receiveThread = new Thread(ReceiveMessage);
@@ -64,7 +64,7 @@ class Program
             };
 
             var jsonMessage = JsonConvert.SerializeObject(message);
-            byte[] data = Encoding.Unicode.GetBytes(jsonMessage);
+            byte[] data = Encoding.UTF8.GetBytes(jsonMessage);
             stream.Write(data, 0, data.Length);
         }
     }
@@ -81,7 +81,7 @@ class Program
                 do
                 {
                     bytes = stream.Read(data, 0, data.Length);
-                    builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                    builder.Append(Encoding.UTF8.GetString(data, 0, bytes));
                 }
                 while (stream.DataAvailable);
 
